@@ -6,7 +6,7 @@ public class Account {
 	private AccountStatus status;
 	private AccountType type;
 	
-	Account(int accountID, double balance, AccountStatus status, AccountType type){
+	public Account(int accountID, double balance, AccountStatus status, AccountType type){
 		this.accountId = accountID;
 		this.balance = balance;
 		this.status = status;

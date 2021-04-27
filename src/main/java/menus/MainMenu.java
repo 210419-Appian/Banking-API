@@ -10,12 +10,8 @@ public class MainMenu {
 			String input = s.nextLine();
 			System.out.println(input);
 			System.out.println("Vallid commands:");
-			System.out.println("new user");
 			System.out.println("exit");
 			switch(input) {
-			case "new user":
-				NewUserMenu.printMenu(s);
-				break;
 			case "exit":
 				System.out.println("Goodbye!");
 				exit = true;

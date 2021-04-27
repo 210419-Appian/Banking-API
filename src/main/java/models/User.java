@@ -9,7 +9,7 @@ public class User {
 	private String email; // not null
 	private Role role;
 	
-	User(int userId, String username, String password, String firstName, String lastName, String email, Role role){
+	public User(int userId, String username, String password, String firstName, String lastName, String email, Role role){
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
