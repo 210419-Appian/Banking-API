@@ -17,5 +17,14 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+		
+		//TODO: Check if this is already on the database
+		//TODO: Check database to see if valid
 	}
+	
+	public User(int userId) {
+		//TODO: Create user using database information
+	}
+	
+	
 }
