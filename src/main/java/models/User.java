@@ -26,5 +26,71 @@ public class User {
 		//TODO: Create user using database information
 	}
 	
+	public int getUserId() {
+		return userId;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public Role getRole() {
+		return role;
+	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+		//TODO: Update database, check for problems
+	}
+	
+	public void setRole(Role role) {
+		this.role = role;
+		//TODO: Update database, check for problems
+	}
+	
+	public void removeUser() {
+		//TODO: This method should remove a user from the database
+	}
 	
 }

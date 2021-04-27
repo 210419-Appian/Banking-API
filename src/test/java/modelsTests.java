@@ -40,15 +40,66 @@ public class modelsTests {
 	
 	@Test
 	public void userCreateTest() {
+		Role myRole = new Role(-9, "AssociateTest");
+		User myUser = new User(-9, "UsernameTest", "1234", "LeeTest", "BrumTest", "aaa@aaa.b", myRole);
 		
+		assertTrue(myUser.getUserId() == -9);
+		assertTrue(myUser.getUsername() == "UsernameTest");
+		assertTrue(myUser.getPassword() == "1234");
+		assertTrue(myUser.getFirstName() == "LeeTest");
+		assertTrue(myUser.getLastName() == "BrumTest");
+		assertTrue(myUser.getEmail() == "aaa@aaa.b");
+		assertTrue(myUser.getRole() == myRole);
+		
+		myRole.removeRole();
+		myUser.removeUser();
 	}
 	
 	@Test
 	public void userUpdateTest() {
+		Role myRole = new Role(-9, "AssociateTest");
+		Role myRole2 = new Role(-9, "AssociateTest2");
+		User myUser = new User(-9, "UsernameTest", "1234", "LeeTest", "BrumTest", "aaa@aaa.b", myRole);
 		
+		myUser.setUserId(-8);
+		myUser.setUsername("UsernameTest2");
+		myUser.setPassword("4321");
+		myUser.setFirstName("TestLee");
+		myUser.setLastName("TestBrum");
+		myUser.setEmail("bbb@bbb.b");
+		myUser.setRole(myRole2);
+		
+		assertTrue(myUser.getUserId() == -8);
+		assertTrue(myUser.getUsername() == "UsernameTest2");
+		assertTrue(myUser.getPassword() == "4321");
+		assertTrue(myUser.getFirstName() == "TestLee");
+		assertTrue(myUser.getLastName() == "TestBrum");
+		assertTrue(myUser.getEmail() == "bbb@bbb.b");
+		assertTrue(myUser.getRole() == myRole2);
+		
+		myRole.removeRole();
+		myUser.removeUser();
 	}
 	
 	public void userThrowTest() {
 		//TODO: Do this when you have throwables!!!
 	}
+	
+	/*******************************************
+	 * Acccount tests
+	 *//////////////////////////////////////////
+	
+	//TODO: Do tests!
+	
+	/*******************************************
+	 * AccountStatus tests
+	 *//////////////////////////////////////////
+	
+	//TODO: Do tests!
+	
+	/*******************************************
+	 * AccountType tests
+	 *//////////////////////////////////////////
+	
+	//TODO: Do tests!
 }
