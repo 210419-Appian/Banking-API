@@ -1,4 +1,4 @@
-package menus;
+package com.bank.menus;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class MainMenu {
 		while(exit == false) {
 			String input = s.nextLine();
 			System.out.println(input);
-			System.out.println("Vallid commands:");
+			System.out.println("Valid commands:");
 			System.out.println("exit");
 			switch(input) {
 			case "exit":
