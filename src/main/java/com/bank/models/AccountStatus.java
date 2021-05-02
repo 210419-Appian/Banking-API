@@ -2,10 +2,10 @@ package com.bank.models;
 
 import java.io.Serializable;
 
+/**
+ * Object to represent an account status
+ */
 public class AccountStatus implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int statusId; // primary key
 	private String status; // not null, unique

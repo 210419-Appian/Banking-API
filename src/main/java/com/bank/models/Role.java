@@ -2,10 +2,10 @@ package com.bank.models;
 
 import java.io.Serializable;
 
+/**
+ * object to represent a role
+ */
 public class Role  implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int roleId; // primary key
 	private String role; // not null, unique

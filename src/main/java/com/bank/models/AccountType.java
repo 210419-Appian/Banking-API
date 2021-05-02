@@ -2,10 +2,10 @@ package com.bank.models;
 
 import java.io.Serializable;
 
+/**
+ * Object to represent an account type
+ */
 public class AccountType implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int typeId; // primary key
 	private String type; // not null, unique

@@ -2,10 +2,10 @@ package com.bank.models;
 
 import java.io.Serializable;
 
+/**
+ * Object to represent a user
+ */
 public class User implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int userId; // primary key
 	private String username; // not null, unique
