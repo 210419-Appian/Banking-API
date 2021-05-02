@@ -1,5 +1,11 @@
 package com.bank.daos;
 
-public interface AccountStatusDAO {
+import java.util.List;
 
+import com.bank.models.AccountStatus;
+
+public interface AccountStatusDAO {
+	public List<AccountStatus> getAll();
+	public AccountStatus findById(int id);
+	public boolean addItem(AccountStatus a);
 }

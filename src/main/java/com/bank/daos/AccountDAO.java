@@ -1,5 +1,12 @@
 package com.bank.daos;
 
-public interface AccountDAO {
+import java.util.List;
 
+import com.bank.models.Account;
+
+public interface AccountDAO {
+	public List<Account> getAll();
+	public Account findById(int id);
+	public boolean addItem(Account a);
+	
 }

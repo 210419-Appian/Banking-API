@@ -1,5 +1,11 @@
 package com.bank.daos;
 
-public interface RoleDAO {
+import java.util.List;
 
+import com.bank.models.Role;
+
+public interface RoleDAO {
+	public List<Role> getAll();
+	public Role findById(int id);
+	public boolean addItem(Role a);
 }

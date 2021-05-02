@@ -1,6 +1,8 @@
 package com.bank.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Object to represent a user
@@ -14,13 +16,16 @@ public class User implements Serializable {
 	private String lastName; // not null
 	private String email; // not null
 	private Role role;
+	private List<Account> accounts;
 	
 	public User() {
 		super();
+		this.role = new Role();
+		this.accounts = new ArrayList<Account>();
 	}
 
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			Role role) {
+			Role role, List<Account> accounts) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -29,10 +34,11 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+		this.accounts = accounts;
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email,
-			Role role) {
+			Role role, List<Account> accounts) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -40,6 +46,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+		this.accounts = accounts;
 	}
 
 	public int getUserId() {
@@ -104,6 +111,7 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((accounts == null) ? 0 : accounts.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -113,7 +121,7 @@ public class User implements Serializable {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -123,6 +131,11 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (accounts == null) {
+			if (other.accounts != null)
+				return false;
+		} else if (!accounts.equals(other.accounts))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -157,11 +170,12 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", accounts="
+				+ accounts + "]";
 	}
 	
 }
