@@ -9,4 +9,5 @@ public interface RoleDAO {
 	public Role findById(int id);
 	public int addItem(Role a);
 	public boolean removeItemGivenId(int id);
+	public boolean update(Role a);
 }

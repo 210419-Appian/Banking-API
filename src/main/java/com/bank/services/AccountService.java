@@ -34,7 +34,10 @@ public class AccountService {
 	public boolean removeAccountById(int id) {
 		return myAccountDAO.removeItemGivenId(id);
 	}
-
+	
+	public boolean updateAccount(Account myAccount, User myUser) {
+		return myAccountDAO.update(myAccount, myUser);
+	}
 	
 //	 public static void main(String args[]) {
 //		 AccountService srv = new AccountService();
@@ -50,7 +53,16 @@ public class AccountService {
 //		 System.out.println(srv.addAccount(myAccount, us)); 
 //		 System.out.println(srv.getAllAccount());
 //		 System.out.println(srv.getAccountById(1));
+//		 
+//		 //update
+//		 myAccount.setBalance(500);
+//		 System.out.println(srv.updateAccount(myAccount, us));
+//		 
+//		 System.out.println(srv.getAllAccount());
+//		 
 //		 srv.removeAccountById(myAccount.getAccountId());
+//		 
+//		 System.out.println(srv.getAllAccount());
 //		 
 //		 
 //	 }

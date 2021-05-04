@@ -31,6 +31,10 @@ public class AccountStatusService {
 	public boolean removeAccountStatusById(int id) {
 		return myAccountStatusDAO.removeItemGivenId(id);
 	}
+	
+	public boolean updateAccountStatus(AccountStatus myAccountStatus) {
+		return myAccountStatusDAO.update(myAccountStatus);
+	}
 
 	
 //	 public static void main(String args[]) {
@@ -41,7 +45,13 @@ public class AccountStatusService {
 //		 System.out.println(srv.addAccountStatus(myAccountStatus)); 
 //		 System.out.println(srv.getAllAccountStatus());
 //		 System.out.println(srv.getAccountStatusById(1));
+//		 
+//		 myAccountStatus.setStatus("Test2");
+//		 System.out.println(srv.updateAccountStatus(myAccountStatus));
+//		 System.out.println(srv.getAllAccountStatus());
+//		 
 //		 srv.removeAccountStatusById(myAccountStatus.getStatusId());
+//		 System.out.println(srv.getAllAccountStatus());
 //		 
 //		 
 //	 }

@@ -9,4 +9,5 @@ public interface AccountStatusDAO {
 	public AccountStatus findById(int id);
 	public int addItem(AccountStatus a);
 	public boolean removeItemGivenId(int id);
+	public boolean update(AccountStatus a);
 }

@@ -9,4 +9,5 @@ public interface UserDAO {
 	public User findById(int id);
 	public int addItem(User a);
 	public boolean removeItemGivenId(int id);
+	public boolean update(User a);
 }
