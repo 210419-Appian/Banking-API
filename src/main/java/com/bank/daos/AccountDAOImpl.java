@@ -156,7 +156,7 @@ public class AccountDAOImpl implements AccountDAO {
 		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
 			String sql = "UPDATE account SET balance = ?, status_id = ?, type_id = ?, user_id = ? WHERE account_id = ?";
 			
-			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
 			statement.setDouble(++index, a.getBalance());
@@ -166,10 +166,6 @@ public class AccountDAOImpl implements AccountDAO {
 			statement.setInt(++index, a.getAccountId());
 			
 			statement.execute();
-			
-			ResultSet myResultSet = statement.getGeneratedKeys();
-			
-			myResultSet.next();
 			
 			return true;
 		}catch(SQLException e) {

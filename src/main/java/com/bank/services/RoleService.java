@@ -31,6 +31,10 @@ public class RoleService {
 	public boolean removeRoleById(int id) {
 		return myRoleDAO.removeItemGivenId(id);
 	}
+	
+	public boolean updateRole(Role myRole) {
+		return myRoleDAO.update(myRole);
+	}
 
 	
 //	 public static void main(String args[]) {
@@ -41,8 +45,13 @@ public class RoleService {
 //		 System.out.println(srv.addRole(myRole)); 
 //		 System.out.println(srv.getAllRole());
 //		 System.out.println(srv.getRoleById(1));
-//		 srv.removeRoleById(myRole.getRoleId());
 //		 
+//		 myRole.setRole("Test2");
+//		 System.out.println(srv.updateRole(myRole)); 
+//		 System.out.println(srv.getAllRole());
+//		 
+//		 srv.removeRoleById(myRole.getRoleId());
+//		 System.out.println(srv.getAllRole());
 //		 
 //	 }
 	 

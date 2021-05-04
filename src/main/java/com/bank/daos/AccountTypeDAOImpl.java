@@ -105,4 +105,24 @@ public class AccountTypeDAOImpl implements AccountTypeDAO {
 		
 		return false;
 	}
+
+	@Override
+	public boolean update(AccountType a) {
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			String sql = "UPDATE account_type SET type_name = ? WHERE type_id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setString(++index, a.getType());
+			statement.setInt(++index, a.getTypeId());
+			
+			statement.execute();
+			
+			return true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

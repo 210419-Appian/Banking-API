@@ -105,4 +105,24 @@ public class RoleDAOImpl implements RoleDAO {
 		
 		return false;
 	}
+
+	@Override
+	public boolean update(Role a) {
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			String sql = "UPDATE user_role SET role_title = ? WHERE role_id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setString(++index, a.getRole());
+			statement.setInt(++index, a.getRoleId());
+			
+			statement.execute();
+			
+			return true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

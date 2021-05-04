@@ -112,17 +112,13 @@ public class AccountStatusDAOImpl implements AccountStatusDAO {
 		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
 			String sql = "UPDATE account_status SET status = ? WHERE status_id = ?";
 			
-			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
 			statement.setString(++index, a.getStatus());
 			statement.setInt(++index, a.getStatusId());
 			
 			statement.execute();
-			
-			ResultSet myResultSet = statement.getGeneratedKeys();
-			
-			myResultSet.next();
 			
 			return true;
 		}catch(SQLException e) {

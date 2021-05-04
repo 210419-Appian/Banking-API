@@ -33,17 +33,27 @@ public class AccountTypeService {
 	}
 
 	
-	 public static void main(String args[]) {
-		 AccountTypeService srv = new AccountTypeService();
-		 
-		 AccountType myAccountType = new AccountType("Test");
-		 
-		 System.out.println(srv.addAccountType(myAccountType)); 
-		 System.out.println(srv.getAllAccountType());
-		 System.out.println(srv.getAccountTypeById(1));
-		 srv.removeAccountTypeById(myAccountType.getTypeId());
-		 
-		 
-	 }
+	public boolean updateAccountType(AccountType myAccountType) {
+		return myAccountTypeDAO.update(myAccountType);
+	}
+	
+//	 public static void main(String args[]) {
+//		 AccountTypeService srv = new AccountTypeService();
+//		 
+//		 AccountType myAccountType = new AccountType("Test");
+//		 
+//		 System.out.println(srv.addAccountType(myAccountType)); 
+//		 System.out.println(srv.getAllAccountType());
+//		 System.out.println(srv.getAccountTypeById(1));
+//		 
+//		 myAccountType.setType("Test2");
+//		 System.out.println(srv.updateAccountType(myAccountType));
+//		 System.out.println(srv.getAllAccountType());
+//		 
+//		 srv.removeAccountTypeById(myAccountType.getTypeId());
+//		 System.out.println(srv.getAllAccountType());
+//		 
+//		 
+//	 }
 	
 }

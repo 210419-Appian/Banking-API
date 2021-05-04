@@ -36,23 +36,30 @@ public class UserService {
 		return myUserDAO.removeItemGivenId(id);
 	}
 
+	public boolean updateUser(User u) {
+		return myUserDAO.update(u);
+	}
 	
-//	 public static void main(String args[]) {
-//		 UserService srv = new UserService();
-//		 Role r = new Role();
-//		 
-//		 
-//		 r.setRoleId(1);
-//		 
-//		 User us = new User(1, "cooldude2021", "1234password","Lee", "Brummitt", "lee@lee.lee", r, new ArrayList<Account>());
-//		 
-//		 System.out.println(srv.addUser(us)); 
-//		 System.out.println(srv.getAllUser());
-//		 System.out.println(srv.getUserById(1));
-//		 srv.removeUserById(us.getUserId());
-//		 System.out.println(srv.getAllUser());
-//		 
-//	 }
-	
+//	public static void main(String args[]) {
+//		UserService srv = new UserService();
+//		Role r = new Role();
+//
+//		r.setRoleId(1);
+//
+//		User us = new User(1, "cooldude2021", "1234password", "Lee", "Brummitt", "lee@lee.lee", r,
+//				new ArrayList<Account>());
+//
+//		System.out.println(srv.addUser(us));
+//		System.out.println(srv.getAllUser());
+//		System.out.println(srv.getUserById(1));
+//		
+//		us.setUsername("cooldude20");
+//		System.out.println(srv.updateUser(us));
+//		System.out.println(srv.getAllUser());
+//		
+//		System.out.println(srv.removeUserById(us.getUserId()));
+//		System.out.println(srv.getAllUser());
+//
+//	}
 	
 }
