@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Login extends HttpServlet {
-	
+public class Withdraw extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter pw = resp.getWriter();
 		
-		pw.print("<h1>Login test</h1>");
+		pw.print("<h1>Withdraw test</h1>");
 		//TODO: Actually do stuff here
 	}
-	
 }
