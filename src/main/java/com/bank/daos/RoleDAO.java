@@ -7,5 +7,6 @@ import com.bank.models.Role;
 public interface RoleDAO {
 	public List<Role> getAll();
 	public Role findById(int id);
-	public boolean addItem(Role a);
+	public int addItem(Role a);
+	public boolean removeItemGivenId(int id);
 }

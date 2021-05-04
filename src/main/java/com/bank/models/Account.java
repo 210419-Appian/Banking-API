@@ -11,6 +11,7 @@ public class Account implements Serializable{
 	private double balance;  // not null
 	private AccountStatus status;
 	private AccountType type;
+	//TODO: could Add a user here, update DAOs, etc or keep doing what I did
 	
 	public Account() {
 		super();

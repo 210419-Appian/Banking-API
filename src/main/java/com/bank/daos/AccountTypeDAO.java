@@ -7,5 +7,6 @@ import com.bank.models.AccountType;
 public interface AccountTypeDAO {
 	public List<AccountType> getAll();
 	public AccountType findById(int id);
-	public boolean addItem(AccountType a);
+	public int addItem(AccountType a);
+	public boolean removeItemGivenId(int id);
 }

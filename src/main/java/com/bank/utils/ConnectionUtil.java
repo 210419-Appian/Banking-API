@@ -12,7 +12,7 @@ public class ConnectionUtil {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:postgresql://appian-210419.cidxzyed6tz4.us-east-2.rds.amazonaws.com:5432/demos";
+		String url = "jdbc:postgresql://appian-210419.cidxzyed6tz4.us-east-2.rds.amazonaws.com:5432/bank";
 		
 		//TODO: Consider using a better username/password ad using system environment variables to hide this
 		String username = "postgres";
