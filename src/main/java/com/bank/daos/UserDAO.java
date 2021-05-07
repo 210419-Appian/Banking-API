@@ -10,4 +10,5 @@ public interface UserDAO {
 	public int addItem(User a);
 	public boolean removeItemGivenId(int id);
 	public boolean update(User a);
+	public User findByUsername(String username);
 }

@@ -8,6 +8,7 @@ import com.bank.daos.UserDAOImpl;
 import com.bank.models.Account;
 import com.bank.models.Role;
 import com.bank.models.User;
+import com.bank.models.UserDTO;
 
 public class UserService {
 
@@ -20,6 +21,10 @@ public class UserService {
 
 	public User getUserById(int id) {
 		return myUserDAO.findById(id);
+	}
+	
+	public User getUserByUsername(String username) {
+		return myUserDAO.findByUsername(username);
 	}
 
 	public boolean addUser(User myUser) {
@@ -38,6 +43,19 @@ public class UserService {
 
 	public boolean updateUser(User u) {
 		return myUserDAO.update(u);
+	}
+	
+	public boolean validateLogin(UserDTO udto) {
+		boolean success = false;
+		User myUser = getUserByUsername(udto.username);
+		
+		if(myUser != null) {
+			if(udto.password.equals(myUser.getPassword())) {
+				success = true;
+			}
+		}
+		
+		return success;
 	}
 	
 //	public static void main(String args[]) {
