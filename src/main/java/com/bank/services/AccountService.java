@@ -39,32 +39,27 @@ public class AccountService {
 		return myAccountDAO.update(myAccount, myUser);
 	}
 	
-//	 public static void main(String args[]) {
-//		 AccountService srv = new AccountService();
-//		 AccountStatus as = new AccountStatus();
-//		 AccountType at = new AccountType();
-//		 User us = new User();
-//		 as.setStatusId(1);
-//		 at.setTypeId(1);
-//		 us.setUserId(1);
-//		 
-//		 Account myAccount = new Account(100, as, at);
-//		 
-//		 System.out.println(srv.addAccount(myAccount, us)); 
-//		 System.out.println(srv.getAllAccount());
-//		 System.out.println(srv.getAccountById(1));
-//		 
-//		 //update
-//		 myAccount.setBalance(500);
-//		 System.out.println(srv.updateAccount(myAccount, us));
-//		 
-//		 System.out.println(srv.getAllAccount());
-//		 
-//		 srv.removeAccountById(myAccount.getAccountId());
-//		 
-//		 System.out.println(srv.getAllAccount());
-//		 
-//		 
-//	 }
+	public boolean withdraw(Account myAccount, double value, User myUser) {
+		boolean success = false;
+		double balance = myAccount.getBalance();
+		
+		if(balance >= value) {
+			success = true;
+			myAccount.setBalance(balance-value);
+			updateAccount(myAccount, myUser);
+		}
+		
+		return success;
+	}
+	
+	public boolean checkOwner(Account myAccount, int userId) {
+		boolean success = false;
+		
+		if(myAccountDAO.getOwnerId(myAccount) == userId) {
+			success = true;
+		}
+		
+		return success;
+	}
 	
 }

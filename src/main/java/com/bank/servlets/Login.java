@@ -44,9 +44,11 @@ public class Login extends HttpServlet {
 			ses.setAttribute("username", myUser.getUsername());
 			ses.setAttribute("role", myUser.getRole().getRole());
 			
+			resp.setContentType("application/json");
 			pw.print(om.writeValueAsString(myUser));
 		}else {
 			resp.setStatus(400);
+			resp.setContentType("application/json");
 			pw.print("{\"message\": \"Invalid Credentials\"}");
 		}
 		

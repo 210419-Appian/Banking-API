@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bank.models.Account;
 import com.bank.models.User;
 import com.bank.utils.ConnectionUtil;
 
@@ -85,12 +86,22 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int addItem(User a) {
+	public User addItem(User a) {
 		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
-			String sql = "INSERT INTO user_table (username, user_password, first_name, last_name, email, role_id) "
-					+ "VALUES (?, ?, ?, ?, ?, ?)";
+			List<Account> b = a.getAccounts();
+			StringBuilder sql = new StringBuilder();
+			sql.append("BEGIN; ");
+			sql.append("INSERT INTO user_table (username, user_password, first_name, last_name, email, role_id) "
+					+ "VALUES (?, ?, ?, ?, ?, ?); ");
 			
-			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			for(int i = 0; i < b.size(); i++) {
+				sql.append("INSERT INTO account (balance, status_id, type_id, user_id) "
+					+ "VALUES (?, ?, ?, (SELECT user_id FROM user_table WHERE username = ?)); ");
+			}
+			
+			sql.append("COMMIT;");
+			
+			PreparedStatement statement = conn.prepareStatement(sql.toString());
 			
 			int index = 0;
 			statement.setString(++index, a.getUsername());
@@ -100,17 +111,23 @@ public class UserDAOImpl implements UserDAO {
 			statement.setString(++index, a.getEmail());
 			statement.setInt(++index, a.getRole().getRoleId());
 			
+			for(int i = 0; i < b.size(); i++) {
+				statement.setDouble(++index, b.get(i).getBalance());
+				statement.setInt(++index, b.get(i).getStatus().getStatusId());
+				statement.setInt(++index, b.get(i).getType().getTypeId());
+				statement.setString(++index, a.getUsername()); //username is unique and we can't guarantee an id because of SERIAL
+			}
+			
 			statement.execute();
 			
-			ResultSet myResultSet = statement.getGeneratedKeys();
-			
-			myResultSet.next();
-			
-			return myResultSet.getInt("user_id");
+			//For whatever reason, Statement.RETURN_GENERATED_KEYS did not work here. I think that it may have something to do with
+			//using a transaction. That means that I need to get the keys myself.
+			//The easiest way to do this is to make a new user object.
+			return findByUsername(a.getUsername());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return -1;
+		return null;
 	}
 
 	@Override

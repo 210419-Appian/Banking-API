@@ -40,19 +40,24 @@ public class Register extends HttpServlet {
 			String body = new String(sb);
 			
 			User myUser = om.readValue(body, User.class);
+			User newUser = us.addUser(myUser);
 			
 			
-			if(us.addUser(myUser)) { //remember: This should automatically add the userId to myUser
-				//TODO: Update this so that you can register a user and create an account at the same time!
+			if(newUser != null) {
 				resp.setStatus(201);
 				
-				pw.print(om.writeValueAsString(myUser));
+				resp.setContentType("application/json");
+				pw.print(om.writeValueAsString(newUser));
 			}else {
 				resp.setStatus(400);
+				
+				resp.setContentType("application/json");
 				pw.print("{\"message\": \"Invalid fields\"}");
 			}
 		}else {
 			resp.setStatus(401);
+			
+			resp.setContentType("application/json");
 			pw.print("{\"message\": \"The requested action is not permitted\"}");
 		}
 	}

@@ -27,14 +27,8 @@ public class UserService {
 		return myUserDAO.findByUsername(username);
 	}
 
-	public boolean addUser(User myUser) {
-		int newId = myUserDAO.addItem(myUser);
-		if(newId == -1) {
-			return false;
-		}else {
-			myUser.setUserId(newId);
-			return true;
-		}
+	public User addUser(User myUser) {
+		return myUserDAO.addItem(myUser);
 	}
 	
 	public boolean removeUserById(int id) {

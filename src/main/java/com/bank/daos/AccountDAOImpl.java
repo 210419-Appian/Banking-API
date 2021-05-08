@@ -173,5 +173,28 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public int getOwnerId(Account myAccount) {
+		int id = myAccount.getAccountId();
+		
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			String sql = "SELECT user_id FROM account WHERE account_id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			statement.setInt(1, id);
+			
+			ResultSet result = statement.executeQuery();
+			
+			result.next();
+			int ownerId = result.getInt("user_id");
+				
+			return ownerId;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 }

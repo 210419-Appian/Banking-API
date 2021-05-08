@@ -19,10 +19,12 @@ public class Logout extends HttpServlet {
 		
 		if(ses != null) {
 			resp.setStatus(202);
+			resp.setContentType("application/json");
 			pw.print("{\"message\": \"You have successfully logged out {" + ses.getAttribute("username") + "}\"}");
 			ses.invalidate();
 		}else {
 			resp.setStatus(400);
+			resp.setContentType("application/json");
 			pw.print("{\"message\": \"There was no user logged into the session\"}");
 		}
 	}

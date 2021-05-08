@@ -12,4 +12,5 @@ public interface AccountDAO {
 	public boolean removeItemGivenId(int id);
 	public List<Account> getUserAccounts(int id);
 	public boolean update(Account a, User u);
+	public int getOwnerId(Account myAccount);
 }
