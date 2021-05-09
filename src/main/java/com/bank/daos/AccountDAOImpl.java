@@ -33,7 +33,8 @@ public class AccountDAOImpl implements AccountDAO {
 						result.getInt("account_id"),
 						result.getDouble("balance"),
 						asdi.findById(result.getInt("status_id")),
-						atdi.findById(result.getInt("type_id")));
+						atdi.findById(result.getInt("type_id")),
+						result.getInt("user_id"));
 				myList.add(myAccount);
 				
 			}
@@ -65,7 +66,8 @@ public class AccountDAOImpl implements AccountDAO {
 						result.getInt("account_id"),
 						result.getDouble("balance"),
 						asdi.findById(result.getInt("status_id")),
-						atdi.findById(result.getInt("type_id")));
+						atdi.findById(result.getInt("type_id")),
+						result.getInt("user_id"));
 				
 			}
 			return myAccount;
@@ -88,6 +90,33 @@ public class AccountDAOImpl implements AccountDAO {
 			statement.setInt(++index, a.getStatus().getStatusId());
 			statement.setInt(++index, a.getType().getTypeId());
 			statement.setInt(++index, u.getUserId());
+			
+			statement.execute();
+			
+			ResultSet myResultSet = statement.getGeneratedKeys();
+			
+			myResultSet.next();
+			
+			return myResultSet.getInt("account_id");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	@Override
+	public int addItem(Account a) {
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			String sql = "INSERT INTO account (balance, status_id, type_id, user_id) "
+					+ "VALUES (?, ?, ?, ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			int index = 0;
+			statement.setDouble(++index, a.getBalance());
+			statement.setInt(++index, a.getStatus().getStatusId());
+			statement.setInt(++index, a.getType().getTypeId());
+			statement.setInt(++index, a.getUserId());
 			
 			statement.execute();
 			
@@ -141,7 +170,8 @@ public class AccountDAOImpl implements AccountDAO {
 						result.getInt("account_id"),
 						result.getDouble("balance"),
 						asdi.findById(result.getInt("status_id")),
-						atdi.findById(result.getInt("type_id")));
+						atdi.findById(result.getInt("type_id")),
+						result.getInt("user_id"));
 				myList.add(myAccount);
 			}
 			return myList;
@@ -200,7 +230,7 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public boolean update(Account a) {
 		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
-			String sql = "UPDATE account SET balance = ?, status_id = ?, type_id = ? WHERE account_id = ?";
+			String sql = "UPDATE account SET balance = ?, status_id = ?, type_id = ?, user_id = ? WHERE account_id = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
@@ -208,6 +238,7 @@ public class AccountDAOImpl implements AccountDAO {
 			statement.setDouble(++index, a.getBalance());
 			statement.setInt(++index, a.getStatus().getStatusId());
 			statement.setInt(++index, a.getType().getTypeId());
+			statement.setInt(++index, a.getUserId());
 			statement.setInt(++index, a.getAccountId());
 			
 			statement.execute();
@@ -217,6 +248,74 @@ public class AccountDAOImpl implements AccountDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<Account> findByStatus(int statusId) {
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			AccountStatusDAOImpl asdi = new AccountStatusDAOImpl();
+			AccountTypeDAOImpl atdi = new AccountTypeDAOImpl();
+			
+			String sql = "SELECT * FROM account WHERE status_id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			statement.setInt(1, statusId);
+			
+			ResultSet result = statement.executeQuery();
+			
+			List<Account> myList = new ArrayList<>();
+			
+			while(result.next()) {
+				Account myAccount = new Account(
+						result.getInt("account_id"),
+						result.getDouble("balance"),
+						asdi.findById(result.getInt("status_id")),
+						atdi.findById(result.getInt("type_id")),
+						result.getInt("user_id"));
+				myList.add(myAccount);
+				
+			}
+			return myList;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public List<Account> findByOwner(int ownerId) {
+		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
+			AccountStatusDAOImpl asdi = new AccountStatusDAOImpl();
+			AccountTypeDAOImpl atdi = new AccountTypeDAOImpl();
+			
+			String sql = "SELECT * FROM account WHERE user_id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			statement.setInt(1, ownerId);
+			
+			ResultSet result = statement.executeQuery();
+			
+			List<Account> myList = new ArrayList<>();
+			
+			while(result.next()) {
+				Account myAccount = new Account(
+						result.getInt("account_id"),
+						result.getDouble("balance"),
+						asdi.findById(result.getInt("status_id")),
+						atdi.findById(result.getInt("type_id")),
+						result.getInt("user_id"));
+				myList.add(myAccount);
+				
+			}
+			return myList;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 }

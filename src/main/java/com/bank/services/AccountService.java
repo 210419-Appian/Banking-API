@@ -31,6 +31,16 @@ public class AccountService {
 		}
 	}
 	
+	public boolean addAccount(Account myAccount) {
+		int newId = myAccountDAO.addItem(myAccount);
+		if(newId == -1) {
+			return false;
+		}else {
+			myAccount.setAccountId(newId);
+			return true;
+		}
+	}
+	
 	public boolean removeAccountById(int id) {
 		return myAccountDAO.removeItemGivenId(id);
 	}
@@ -71,6 +81,14 @@ public class AccountService {
 		
 		myAccount.setBalance(balance+value);
 		updateAccount(myAccount);
+	}
+
+	public List<Account> getAccountsByStatus(int statusId) {
+		return myAccountDAO.findByStatus(statusId);
+	}
+
+	public List<Account> getAccountsByUser(int ownerId) {
+		return myAccountDAO.findByOwner(ownerId);
 	}
 	
 }

@@ -11,7 +11,7 @@ public class Account implements Serializable{
 	private double balance;  // not null
 	private AccountStatus status;
 	private AccountType type;
-	//TODO: could Add a user here, update DAOs, etc or keep doing what I did
+	private int userId;
 	
 	public Account() {
 		super();
@@ -19,19 +19,21 @@ public class Account implements Serializable{
 		this.type = new AccountType();
 	}
 	
-	public Account(int accountId, double balance, AccountStatus status, AccountType type) {
+	public Account(int accountId, double balance, AccountStatus status, AccountType type, int userId) {
 		super();
 		this.accountId = accountId;
 		this.balance = balance;
 		this.status = status;
 		this.type = type;
+		this.userId = userId;
 	}
 	
-	public Account(double balance, AccountStatus status, AccountType type) {
+	public Account(double balance, AccountStatus status, AccountType type, int userId) {
 		super();
 		this.balance = balance;
 		this.status = status;
 		this.type = type;
+		this.userId = userId;
 	}
 
 	public int getAccountId() {
@@ -65,9 +67,15 @@ public class Account implements Serializable{
 	public void setType(AccountType type) {
 		this.type = type;
 	}
-
-	//TODO: hashcode equals and tostring may depend on other objects. Check this.
 	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,6 +86,7 @@ public class Account implements Serializable{
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + userId;
 		return result;
 	}
 
@@ -104,13 +113,15 @@ public class Account implements Serializable{
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
+		if (userId != other.userId)
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", type=" + type
-				+ "]";
+				+ ", userId=" + userId + "]";
 	}
 	
 }
