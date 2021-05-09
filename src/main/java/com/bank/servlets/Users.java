@@ -98,6 +98,10 @@ public class Users extends HttpServlet{
 					if(selfUpdate) { //update username for session if necessary
 						ses.setAttribute("username", myUser.getUsername());
 					}
+					
+					//Getting a new object to show the accounts
+					json = om.writeValueAsString(us.getUserById(myUser.getUserId()));
+					resp.setStatus(200);
 				}//TODO: consider making a better way to handle invalid data
 				
 			}else if(sections.length == 3) {
