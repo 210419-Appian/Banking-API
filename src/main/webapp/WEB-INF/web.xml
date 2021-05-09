@@ -49,6 +49,16 @@
      <servlet-name>Withdraw</servlet-name>
      <servlet-class>com.bank.servlets.Withdraw</servlet-class>
   </servlet>
+  <servlet>
+     <display-name>Accounts</display-name>
+     <servlet-name>Accounts</servlet-name>
+     <servlet-class>com.bank.servlets.Accounts</servlet-class>
+  </servlet>
+  <servlet>
+     <display-name>Users</display-name>
+     <servlet-name>Users</servlet-name>
+     <servlet-class>com.bank.servlets.Users</servlet-class>
+  </servlet>
   
   <servlet-mapping>
      <servlet-name>Deposit</servlet-name>
@@ -78,5 +88,13 @@
   <servlet-mapping>
      <servlet-name>Withdraw</servlet-name>
      <url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>Accounts</servlet-name>
+     <url-pattern>/accounts/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>Users</servlet-name>
+     <url-pattern>/users/*</url-pattern>
   </servlet-mapping>
 </web-app>

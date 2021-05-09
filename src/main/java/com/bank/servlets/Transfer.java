@@ -1,4 +1,4 @@
-	package com.bank.servlets;
+package com.bank.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
