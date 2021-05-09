@@ -42,17 +42,17 @@ public class Withdraw extends HttpServlet {
 		WithdrawDTO myWithdraw = om.readValue(body, WithdrawDTO.class);
 		
 		if(ses != null ) {
-			//TODO: Check if this cast works
 			User myUser = us.getUserByUsername((String) ses.getAttribute("username"));
 			
+			//TODO: Check if this exists first
 			Account myAccount = as.getAccountById(myWithdraw.accountId);
 			
 			if(ses.getAttribute("role").equals("Admin") || as.checkOwner(myAccount, myUser.getUserId())) {
-				if(as.withdraw(myAccount, myWithdraw.amount, myUser)) {
+				if(as.withdraw(myAccount, myWithdraw.amount)) {
 					resp.setStatus(200);
 					
 					resp.setContentType("application/json");
-					pw.print("{\"message\": \"${" + myWithdraw.amount + "} has been withdrawn from Account #{" + myWithdraw.accountId + "}\"");
+					pw.print("{\"message\": \"${" + myWithdraw.amount + "} has been withdrawn from Account #{" + myWithdraw.accountId + "}\"}");
 					success = true;
 				}else {
 					resp.setStatus(402);

@@ -39,14 +39,18 @@ public class AccountService {
 		return myAccountDAO.update(myAccount, myUser);
 	}
 	
-	public boolean withdraw(Account myAccount, double value, User myUser) {
+	public boolean updateAccount(Account myAccount) {
+		return myAccountDAO.update(myAccount);
+	}
+	
+	public boolean withdraw(Account myAccount, double value) {
 		boolean success = false;
 		double balance = myAccount.getBalance();
 		
 		if(balance >= value) {
 			success = true;
 			myAccount.setBalance(balance-value);
-			updateAccount(myAccount, myUser);
+			updateAccount(myAccount);
 		}
 		
 		return success;
@@ -60,6 +64,13 @@ public class AccountService {
 		}
 		
 		return success;
+	}
+
+	public void deposit(Account myAccount, double value) {
+		double balance = myAccount.getBalance();
+		
+		myAccount.setBalance(balance+value);
+		updateAccount(myAccount);
 	}
 	
 }
