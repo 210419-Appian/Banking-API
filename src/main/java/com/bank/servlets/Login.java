@@ -37,9 +37,10 @@ public class Login extends HttpServlet {
 		String body = new String(sb);
 		
 		UserDTO udto = om.readValue(body, UserDTO.class);
+		User myUser = us.getUserByUsername(udto.username);
 		
-		if(us.validateLogin(udto)) {
-			User myUser = us.getUserByUsername(udto.username);
+		if(myUser != null && udto.password.equals(myUser.getPassword())) {
+			
 			HttpSession ses = req.getSession();
 			ses.setAttribute("username", myUser.getUsername());
 			ses.setAttribute("role", myUser.getRole().getRole());

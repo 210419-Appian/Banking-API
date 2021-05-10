@@ -151,7 +151,7 @@ public class AccountDAOImpl implements AccountDAO {
 		return false;
 	}
 
-	public List<Account> getUserAccounts(int id) { //TODO: Make sure this actually works
+	public List<Account> getUserAccounts(int id) {
 		try(Connection conn = ConnectionUtil.getDatabaseConnection()){
 			AccountStatusDAOImpl asdi = new AccountStatusDAOImpl();
 			AccountTypeDAOImpl atdi = new AccountTypeDAOImpl();
