@@ -35,24 +35,5 @@ public class RoleService {
 	public boolean updateRole(Role myRole) {
 		return myRoleDAO.update(myRole);
 	}
-
-	
-//	 public static void main(String args[]) {
-//		 RoleService srv = new RoleService();
-//		 
-//		 Role myRole = new Role("Test");
-//		 
-//		 System.out.println(srv.addRole(myRole)); 
-//		 System.out.println(srv.getAllRole());
-//		 System.out.println(srv.getRoleById(1));
-//		 
-//		 myRole.setRole("Test2");
-//		 System.out.println(srv.updateRole(myRole)); 
-//		 System.out.println(srv.getAllRole());
-//		 
-//		 srv.removeRoleById(myRole.getRoleId());
-//		 System.out.println(srv.getAllRole());
-//		 
-//	 }
 	 
 }

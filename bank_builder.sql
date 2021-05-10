@@ -64,7 +64,20 @@ INSERT INTO user_table (username, user_password, first_name, last_name, email, r
 
 INSERT INTO account (balance, status_id, type_id, user_id)
 	VALUES (100000, 2, 2, 1);
+INSERT INTO account (balance, status_id, type_id, user_id)
+	VALUES (100000, 1, 1, 1);
 
+INSERT INTO user_table (username, user_password, first_name, last_name, email, role_id)
+	VALUES ('employee', 'password', 'Bob', 'Bobson', 'Bob@website.com', 2);
+
+INSERT INTO account (balance, status_id, type_id, user_id)
+	VALUES (10000, 2, 2, 2);
+
+INSERT INTO user_table (username, user_password, first_name, last_name, email, role_id)
+	VALUES ('user', 'password', 'Bill', 'Billson', 'Bill@website.com', 3);
+
+INSERT INTO account (balance, status_id, type_id, user_id)
+	VALUES (1000, 2, 2, 3);
 
 
 
